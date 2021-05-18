@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Friends from './components/Friends';
 
-// import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import { axiosWithAuth } from './utils/axiosWithAuth';
 
 
@@ -28,17 +28,17 @@ function App() {
           <li>
             <Link to="/login">Login</Link>
           </li>
-          <li>
+          {/* <li>
             <Link onClick={logout}>Logout</Link>
-          </li>
+          </li> */}
           <li>
-            {localStorage.getItem("token")?<Link to="/protected">Protected Page</Link>:<div>Please Log in</div>}
+            {localStorage.getItem("token")?<Link to="/friendList">FriendLists</Link>:<div>Please Log in</div>}
           </li>
         </ul>
 
         <Switch>
-          {/* <PrivateRoute exact path="/protected" component={Friends} /> */}
-          <Route exact path="/protected" component={Friends} />
+          <PrivateRoute exact path="/friendList" component={Friends} />
+          {/* <Route exact path="/friendList" component={Friends} /> */}
           <Route path="/login" component={Login} />
           <Route component={Login} />
         </Switch>
